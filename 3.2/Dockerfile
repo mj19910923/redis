@@ -37,7 +37,6 @@ RUN buildDeps='gcc libc6-dev make' \
 	&& make -C /usr/src/redis \
 	&& make -C /usr/src/redis install \
 	&& mkdir -p /etc/redis/ \
-	&& cp /usr/src/redis/redis.conf /etc/redis/redis.conf \
 	&& rm -r /usr/src/redis \
 	&& apt-get purge -y --auto-remove $buildDeps
 
@@ -45,6 +44,7 @@ RUN mkdir /data && chown redis:redis /data
 VOLUME /data
 WORKDIR /data
 
+COPY redis.conf /etc/redis/redis.conf
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
 
