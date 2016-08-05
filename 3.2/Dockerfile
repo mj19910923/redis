@@ -37,7 +37,7 @@ RUN buildDeps='gcc libc6-dev make' \
 	&& make -C /usr/src/redis \
 	&& make -C /usr/src/redis install \
 	&& mkdir -p /etc/redis/ \
-	&& cp /usr/src/redis/redis.conf /etc/redis/redis.conf
+	&& cp /usr/src/redis/redis.conf /etc/redis/redis.conf \
 	&& rm -r /usr/src/redis \
 	&& apt-get purge -y --auto-remove $buildDeps
 
